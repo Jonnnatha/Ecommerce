@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('seller_file_managers', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('seller_id');
+            $table->string('url');
             $table->timestamps();
         });
     }

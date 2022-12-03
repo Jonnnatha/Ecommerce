@@ -15,6 +15,15 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('user_id');
+            $table->string('order_number');
+            $table->text('shipping_address');
+            $table->string('payment_type')->default('cash');
+            $table->float('subtotal',8,2);
+            $table->float('discount',8,2);
+            $table->float('charges',8,2);
+            $table->float('total',8,2);
+            $table->enum('status',['active','inactive'])->default('inactive');
             $table->timestamps();
         });
     }

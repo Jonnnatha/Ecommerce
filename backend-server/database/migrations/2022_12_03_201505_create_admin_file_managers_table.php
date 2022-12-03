@@ -15,6 +15,8 @@ return new class extends Migration
     {
         Schema::create('admin_file_managers', function (Blueprint $table) {
             $table->id();
+            $table->string('url');
+            $table->enum('type',['product','slider','category','brand']);
             $table->timestamps();
         });
     }

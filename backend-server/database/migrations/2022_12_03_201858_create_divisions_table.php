@@ -15,6 +15,9 @@ return new class extends Migration
     {
         Schema::create('divisions', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->string('bn_name');
+            $table->integer('charge')->default(100);
             $table->timestamps();
         });
     }
