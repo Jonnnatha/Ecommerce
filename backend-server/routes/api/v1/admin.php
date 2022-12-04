@@ -30,6 +30,5 @@ Route::middleware('auth:admin-api')->group(function () {
         'subcategories' => SubCategoryController::class,
         'products' => ProductController::class,
         'divisions' => DivisionController::class,
-        'divisions' => DivisionController::class,
     ]);
 });
