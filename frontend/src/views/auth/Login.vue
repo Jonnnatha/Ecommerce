@@ -1,3 +1,18 @@
+
+<script setup>
+
+import {userCounter} from "@/stores/counter";
+import { storeToRefs } from "pinia";
+
+const store = userCounter();
+const {count, doubleCount} = storeToRefs(store);
+
+const clickMe = () =>{
+  store.increment();
+}
+
+</script>
+
 <template>
     <div>
         <section class="user-form-part">
@@ -40,6 +55,10 @@
                     </div>
                     <div class="form-button">
                       <button type="submit">login</button>
+
+                      <button type="submit " @click.prevent="clickMe">Count</button>
+                      <button type="submit ">{{count}}</button>
+                      <p>{{doubleCount}}</p>
                       <p>
                         Forgot your password?<a
                           href="reset-password.html"
