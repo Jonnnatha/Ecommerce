@@ -1,16 +1,49 @@
-
 <script setup>
-
-import {userCounter} from "@/stores/counter";
+import {useAuth} from "@/stores/auth";
 import { storeToRefs } from "pinia";
 
-const store = userCounter();
-const {count, doubleCount} = storeToRefs(store);
+import { reactive,ref } from 'vue';
 
-const clickMe = () =>{
-  store.increment();
-}
+import {Field, Form, ErrorMessage} from "vee-validate";
+import * as yup from "yup";
 
+const schema = yup.object({
+    phone: yup.string().required("Phone filed is required"),
+    password: yup.string().required().min(8),
+});
+
+const auth = useAuth();
+const {errors} = storeToRefs(auth);
+
+///const form = reactive({
+
+//phone: "",
+ //password: "",
+//});
+
+
+const showPassowrd = ref(false);
+
+const toggleShow = () => {
+
+  showPassowrd.value = !showPassowrd.value;
+
+};
+
+const onSubmit = async(values, {setFieldError}) =>{
+
+  const res = await auth.login(values);
+
+  if(res.data){
+    alert("login sucess")
+
+  }else{
+    setFieldError('phone',"test Message");
+  }
+  ///console.log(actions);
+  
+
+};
 </script>
 
 <template>
@@ -22,25 +55,45 @@ const clickMe = () =>{
               <div class="user-form-card">
                 <div class="user-form-title">
                   <h2>Customer Login</h2>
+                 
                   <p>Use your credentials to access</p>
                 </div>
                 <div class="user-form-group" id="axiosForm">
-                  <form class="user-form">
+                  <Form class="user-form" @submit="onSubmit"
+                   :validation-schema="schema"
+                   v-slot="{errors, isSubmitting}"
+                   >
                     <!--v-if-->
                     <div class="form-group">
-                      <input
+                      <Field
+                        name="phone"  
                         type="text"
                         class="form-control"
                         placeholder="phone no"
+                        :class="{'is-invalid': errors.phone }"
                       /><!--v-if-->
+                      <!----   <ErrorMessage name="phone" class="text-danger"/>  -->
+                     <span class="text-danger" v-if="errors.phone">{{errors.phone}}</span>
                     </div>
                     <div class="form-group">
-                      <input
-                        type="password"
+                      <Field
+                        name="password"
+                        :type="showPassowrd ? 'text': 'password'"
                         class="form-control"
                         placeholder="password"
-                      /><span class="view-password"
-                        ><i class="fas text-success fa-eye"></i></span
+                        :class="{'is-invalid':errors.password}"
+                      />
+                     <!-------   <ErrorMessage name="password"/>    -->
+                      <span class="text-danger" v-if="errors.password">{{errors.password}}</span>
+                      
+                      <span class="view-password" @click="toggleShow"
+                        ><i class="fas text-success"
+                        :class="{
+                         'fa-eye-slash': showPassowrd,
+                         'fa-eye': !showPassowrd,
+
+                        }"
+                        ></i></span
                       ><!--v-if-->
                     </div>
                     <div class="form-check mb-3">
@@ -54,11 +107,12 @@ const clickMe = () =>{
                       >
                     </div>
                     <div class="form-button">
-                      <button type="submit">login</button>
+                      <button type="submit" :disabled="isSubmitting">login
 
-                      <button type="submit " @click.prevent="clickMe">Count</button>
-                      <button type="submit ">{{count}}</button>
-                      <p>{{doubleCount}}</p>
+                        <span v-show="isSubmitting"
+                        class="spinner-border spinner-border-sm mr-1"></span>
+                      </button>
+                      
                       <p>
                         Forgot your password?<a
                           href="reset-password.html"
