@@ -1,5 +1,21 @@
-
 <script setup>
+
+import {useAuth, useNotification} from "@/stores";
+import { storeToRefs } from "pinia";
+import { useRouter } from 'vue-router'
+const auth = useAuth();
+const {user, loading } = storeToRefs(auth);
+const router = useRouter();
+const notify = useNotification();
+const userlogout = async() => {
+    const res = await auth.logout();
+    if (res.status){
+        router.push({name: "index.page"});
+     notify.Info("Logout Success")
+    }
+}
+
+
 function search() {
     $(".header-form").toggleClass("active"),
         $(".header-src").children(".fa-search").toggleClass("fa-times");
@@ -61,7 +77,7 @@ function cartshow() {
                         <li class="nav-item dropdown">
                             <a class="nav-link header-widget" href="#" data-bs-toggle="dropdown"><i
                                     class="fas fa-user"></i></a>
-                            <ul class="dropdown-menu dropdown-menu-end">
+                            <ul class="dropdown-menu dropdown-menu-end" v-if="!user.data">
                                 <li><router-link :to="{name: 'user.login'}"
                                        class="dropdown-item"> 
                                        Login
@@ -71,6 +87,9 @@ function cartshow() {
                                     class="dropdown-item"> 
                                     Register</router-link>
                                 </li>
+                            
+                            </ul>
+                            <ul class="dropdown-menu dropdown-menu-end" v-else>
                                 <li>
                                     <router-link :to="{name: 'user.profile'}" 
                                     class="dropdown-item"> 
@@ -87,6 +106,16 @@ function cartshow() {
                                     <router-link :to="{name: 'user.wishlist'}" 
                                     class="dropdown-item"> 
                                     My Wishlist</router-link>
+                                </li>
+
+                                <li>
+                                    <button
+                                    :disabled="loading"
+                                    class="dropdown-item"
+                                    @click="userlogout"> 
+                                    Logout 
+                                    <span v-show="loading" class="spinner-border spinner-border-sm mr-1"></span>
+                                </button>
                                 </li>
                             </ul>
                         </li>

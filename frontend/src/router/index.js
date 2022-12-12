@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
-
+import  NProgress  from 'nprogress'
+import {useAuth} from "@/stores"
 import {Index, Shop, SingleProduct, Checkout} from "@/views/pages"
 import {SellerApply, SellerPage, SellerStore} from "@/views/pages/seller"
 import {UserLogin,UserRegister} from "@/views/auth"
@@ -53,31 +54,31 @@ const routes = [
     { path: '/auth/login', 
     name:"user.login", 
     component: UserLogin,
-    meta: {title:"Login"},
+    meta: {title:"Login", guest: true},
   },
 
     { path: '/auth/register', 
     name:"user.register", 
     component: UserRegister, 
-    meta: {title:"Register"},
+    meta: {title:"Register", guest: true},
   },
 
   { path: '/my/profile', 
   name:"user.profile", 
   component: MyProfile, 
-  meta: {title:"profile"},
+  meta: {title:"profile", requiresAuth: true},
 },
 
 { path: '/my/orders', 
 name:"user.orders", 
 component: MyOrderList, 
-meta: {title:"orders"},
+meta: {title:"orders", requiresAuth: true},
 },
 
 { path: '/my/wishlist', 
 name:"user.wishlist", 
 component: MyWishlist, 
-meta: {title:"wishlist"},
+meta: {title:"wishlist", requiresAuth: true},
 },
 
   ];
@@ -91,7 +92,34 @@ const router = createRouter({
 const DEFAULT_TITLE = "404";
 router.beforeEach((to, from, next) => {
  document.title = to.meta.title || DEFAULT_TITLE;
- next();
+ NProgress.start();
+
+  const loggedIn = useAuth();
+
+  if(to.matched.some((record) => record.meta.requiresAuth)){
+    if(!loggedIn.user.meta){
+      next({name: "user.login"});
+    }else{
+      next();
+    }
+  }else if(to.matched.some((record) => record.meta.guest)){
+    if(loggedIn.user.meta){
+      next({name: "user.profile"});
+    }else{
+      next();
+    }
+  }
+  
+  else{
+    next();
+  }
+
+ 
 });
+router.afterEach(()=>{
+
+NProgress.done();
+});
+
 
 export default router;

@@ -1,7 +1,9 @@
 <script setup>
-import { ref } from "vue";
+import {useSlider} from "@/stores"
+import { ref, onMounted } from "vue";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
+import { storeToRefs } from "pinia";
 
 // Import Swiper styles
 import "swiper/css";
@@ -10,10 +12,19 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import { Pagination, Autoplay, Navigation } from "swiper";
 
+
 const modules = ref([Pagination,Autoplay]);
 const newSlide = ref([Navigation]);
 
+////slider section
 
+const slider = useSlider();
+const { sliders } = storeToRefs(slider);
+
+onMounted(() => {
+    slider.getData();
+
+});
 </script>
 
 
@@ -39,9 +50,17 @@ const newSlide = ref([Navigation]);
                              :modules="modules" 
                             class="mySwiper">
 
-                                <swiper-slide><a href="#"><img src="@/assets/images/banner/01.jfif" alt="" /></a></swiper-slide>
-                                <swiper-slide> <a href="#"><img src="@/assets/images/banner/02.jfif" alt="" /></a></swiper-slide>
-                                    <swiper-slide><a href="#"><img src="@/assets/images/banner/03.jfif" alt="" /></a></swiper-slide>
+                            <swiper-slide
+                    v-for="(slider, index) in sliders.data"
+                    :key="index"
+                  >
+                    <a href="#"
+                      ><img
+                        :src="slider.image"
+                        alt="" /></a
+                  ></swiper-slide>
+                                <!-- <swiper-slide> <a href="#"><img src="@/assets/images/banner/02.jfif" alt="" /></a></swiper-slide>
+                                    <swiper-slide><a href="#"><img src="@/assets/images/banner/03.jfif" alt="" /></a></swiper-slide> -->
                     
                             </swiper>
                             

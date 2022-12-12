@@ -16,8 +16,4 @@ export const userCounter = defineStore("count",{
                 this.count++;
             },
         },
-
-
-
-
 });
