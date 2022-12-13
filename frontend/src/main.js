@@ -6,7 +6,7 @@ import './template.js'
 import router from "./router"
 import App from './App.vue'
 
-import ElementPlus from 'element-plus'
+import ElementPlus, { valueEquals } from 'element-plus'
 
 import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
 
@@ -18,3 +18,13 @@ pinia.use(piniaPluginPersistedstate)
     app.use(pinia)
     app.use(ElementPlus)
     app.mount('#app')
+
+    app.config.globalProperties.$filters = {
+        currencySymbol(value){
+            return "R$" + value.toLocaleString();
+        },
+        makeImagePath(img){
+            return import.meta.env.VITE_API_URL + "/" +img;
+        },
+
+    }

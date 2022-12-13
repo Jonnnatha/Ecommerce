@@ -16,8 +16,8 @@ class SliderController extends Controller
      */
     public function index()
     {
-        $sliders = Slider::orderBy('id','desc')->get();
-        return SliderResource::collection($sliders);
+        $sliders = Slider::active()->orderBy('id', 'desc')->take(5)->get();
+        return  SliderResource::collection($sliders);
     }
 
     /**

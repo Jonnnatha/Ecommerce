@@ -14,10 +14,24 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Product::paginate(10);
+        try {
+            $limit = 10;
+
+        if($request->conditions == null)
+        {
+            $products = Product::paginate(10);
+        }elseif($request->conditions === 'sale'){
+            $products = Product::sold()->paginate($limit);
+        }else {
+            $products = Product::conditions($request->conditions)->paginate($limit);
+        }
+
         return ProductResource::collection($products);
+        } catch (\Exception $e) {
+            return send_ms($e->getMessage(),false,500);
+        }
     }
 
     /**
