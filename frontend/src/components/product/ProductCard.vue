@@ -1,11 +1,39 @@
 <script setup>
+import {useCart, useNotification} from "@/stores"
+import { ref } from "@vue/reactivity";
 import {ProductPrice} from "@/components/product";
+const cart = useCart();
+const notify = useNotification();
 const props = defineProps({
     products:{
         type:Object,
         required:true,
     }
 });
+
+const price = ref();
+
+function addToCart(product) {
+  if (product.discount) {
+    var firstprice = product.price;
+    var discount = product.discount / 100;
+    var totalPrice = firstprice - firstprice * discount;
+    price.value = totalPrice.toFixed();
+  } else {
+    price.value = product.price;
+  }
+
+    cart.addToCart({
+        id:product.id,
+        name: product.name,
+        price: price.value,
+        thumbnail: product.thumbnail,
+    });
+
+    notify.Success(`${product.name} Added Your Cart`);
+    
+
+}
 </script>
 
 <template>
@@ -29,7 +57,7 @@ const props = defineProps({
                               
                                 <ProductPrice :price="product.price" :discount="product.discount"/>
 
-                                <button class="product-add" title="Add to Cart">
+                                <button class="product-add" title="Add to Cart" @click.prevent="addToCart(product)">
                                     <i class="fas fa-shopping-basket"></i><span>Add</span>
                                 </button>
                             </div>

@@ -1,30 +1,32 @@
-import { createApp } from 'vue'
-import {createPinia} from 'pinia'
-import './style.css'
-import './template.js'
+import { createApp } from "vue";
+import { createPinia } from "pinia";
+import "./style.css";
+import "./template.js";
 
-import router from "./router"
-import App from './App.vue'
+import router from "./router";
+import App from "./App.vue";
 
-import ElementPlus, { valueEquals } from 'element-plus'
+import ElementPlus from "element-plus";
 
-import piniaPluginPersistedstate from 'pinia-plugin-persistedstate'
+import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
+import "skeleton-screen-css";
 
 const pinia = createPinia();
-const app = createApp(App)
-pinia.use(piniaPluginPersistedstate)
+pinia.use(piniaPluginPersistedstate);
 
-    app.use(router)
-    app.use(pinia)
-    app.use(ElementPlus)
-    app.mount('#app')
+const app = createApp(App);
+app.use(router);
+app.use(pinia);
+app.use(ElementPlus);
 
-    app.config.globalProperties.$filters = {
-        currencySymbol(value){
-            return "R$" + value.toLocaleString();
-        },
-        makeImagePath(img){
-            return import.meta.env.VITE_API_URL + "/" +img;
-        },
+app.config.globalProperties.$filters = {
+  currencySymbol(value) {
+    return "R$" + value.toLocaleString();
+  },
 
-    }
+  makeImagePath(img) {
+    return import.meta.env.VITE_API_URL + "/" + img;
+  },
+};
+
+app.mount("#app");

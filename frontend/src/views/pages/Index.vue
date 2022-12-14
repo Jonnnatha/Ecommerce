@@ -1,6 +1,7 @@
 <script setup>
 import {useSlider,useCategory, useProduct} from "@/stores"
 import {ProductCard, ProductPrice} from "@/components/product"
+import {HomeSliderScreen, CategoryScreen, ProductScreen} from "@/components/skeleton"
 import { ref, onMounted } from "vue";
 // Import Swiper Vue.js components
 import { Swiper, SwiperSlide } from "swiper/vue";
@@ -46,11 +47,13 @@ onMounted(() => {
     <div>
 
         <section class="banner-part" style="text-align: center;">
+            
             <div class="">
                 <div class="row">
                     <div class="col-lg-18 order-0 order-lg-1 order-xl-1">
                         <div class="home-grid-slider slider-arrow slider-dots">
 
+                          <template v-if="sliders.data">
                             <swiper 
                             :spaceBetween="30" 
                             :pagination="{
@@ -76,7 +79,11 @@ onMounted(() => {
                                     <swiper-slide><a href="#"><img src="@/assets/images/banner/03.jfif" alt="" /></a></swiper-slide> -->
                     
                             </swiper>
+                          </template>
                             
+                          <template v-else>
+                           <HomeSliderScreen/>
+                          </template>
                            
                             
                         </div>
@@ -96,6 +103,7 @@ onMounted(() => {
                 </div>
 
                 <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+                  <template v-if="categories.data">
                     <div class="col" v-for="(category,index) in categories.data" :key="index">
                         <div class="product-card">
                             <ul>
@@ -109,6 +117,10 @@ onMounted(() => {
                             <h6 class="text-center mt-2">{{category.name}}</h6>
                         </div>
                     </div>
+                  </template>
+                  <template v-else>
+                    <CategoryScreen :dataAmount="10"/>
+                  </template>
 
                 </div>
             </div>
@@ -122,7 +134,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-            <ProductCard :products="sales"/>
+                <template v-if="sales.data">
+                    <ProductCard :products="sales"/>
+                </template>
+                <template v-else>
+                   <ProductScreen :dataAmount="10"/>
+                </template>
+          
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-25">
@@ -142,7 +160,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-            <ProductCard :products="popular"/>
+                <template v-if="sales.data">
+                    <ProductCard :products="popular"/>
+                </template>
+                <template v-else>
+                   <ProductScreen :dataAmount="10"/>
+                </template>
+           
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-25">
@@ -162,7 +186,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-            <ProductCard :products="winter"/>
+                <template v-if="sales.data">
+                    <ProductCard :products="winter"/>
+                </template>
+                <template v-else>
+                   <ProductScreen :dataAmount="10"/>
+                </template>
+           
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-25">
@@ -183,7 +213,13 @@ onMounted(() => {
                         </div>
                     </div>
                 </div>
-            <ProductCard :products="features"/>
+                <template v-if="sales.data">
+                    <ProductCard :products="features"/>
+                </template>
+                <template v-else>
+                   <ProductScreen :dataAmount="10"/>
+                </template>
+          
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="section-btn-25">
