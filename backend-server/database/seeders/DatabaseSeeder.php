@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\Hash;
+
 
 class DatabaseSeeder extends Seeder
 {
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             'email' => 'test@gmail.com',
             'phone' => '01722260010',
             "isVerified" => 1,
-            'password' => Hash::make('password'),
+            'password' => 'password',
         ]);
 
 

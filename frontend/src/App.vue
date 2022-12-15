@@ -7,6 +7,7 @@ import {
   MobileMenu,
   Newsletter,
   FooterPart,
+  LoginModal
 } from "@/components";
 
 </script>
@@ -24,6 +25,7 @@ import {
     <CartSideBar />
 
     <MobileMenu />
+    <LoginModal />
 
 
     <!--- -->

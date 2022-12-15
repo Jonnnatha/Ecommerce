@@ -1,8 +1,9 @@
 <script setup>
-import {useCart, useNotification} from "@/stores"
+import {useCart, useNotification, useAuth} from "@/stores"
 import { ref } from "@vue/reactivity";
 import {ProductPrice} from "@/components/product";
 const cart = useCart();
+const auth = useAuth();
 const notify = useNotification();
 const props = defineProps({
     products:{
@@ -34,6 +35,15 @@ function addToCart(product) {
     
 
 }
+
+//add to wishlist
+const addToWishlist = () =>{
+    if (auth.user.data) {
+        alert("login")
+    }else{
+    $("#login-modal").modal("show");
+    }
+}
 </script>
 
 <template>
@@ -45,8 +55,10 @@ function addToCart(product) {
                                     <label class="label-text new">{{product.conditions}}</label>
                                     <label class="label-text sale" v-if="product.discount">{{product.discount}}%</label>
                                 </div>
-                                <button class="product-wish wish">
-                                    <i class="fas fa-heart"></i></button><router-link :to="{name: 'product.details'}" class="product-image"
+                                <button class="product-wish wish" @click.prevent="addToWishlist(product)">
+                                    <i class="fas fa-heart"></i>
+                                </button>
+                                    <router-link :to="{name: 'product.details'}" class="product-image"
                                     ><img :src="$filters.makeImagePath(product.thumbnail)"
                                         alt="product" /></router-link>
                             </div>

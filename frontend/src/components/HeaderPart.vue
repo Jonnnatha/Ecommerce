@@ -143,9 +143,9 @@ function cartshow() {
     display:none;
     margin-top: 0;
 }
-.hover-nav .nav-item:hover .nav-link{
+/* .hover-nav .nav-item:hover .nav-link{
 
-}
+} */
 .hover-nav .nav-item:hover .dropdown-menu{
     display: block;
 }

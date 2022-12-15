@@ -23,11 +23,12 @@ const toggleShow = () => {
 };
 const notify = useNotification();
 
-const onSubmit = async (values, { setErrors }) => {
+const onSubmit = async (values, { setErrors, resetForm }) => {
 
-  const res = await auth.login(values);
+const res = await auth.login(values);
 
-  if (res.data) {
+if (res.data) {
+  resetForm();
     router.push({name:"index.page"});
    notify.Success("login Hoiche")
 
