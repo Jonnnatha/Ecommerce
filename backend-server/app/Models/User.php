@@ -52,4 +52,14 @@ class User extends Authenticatable
     {
         $this->attributes['password'] = bcrypt($password);
     }
+
+    public function scopeVerifiedUser($query)
+    {
+        $query->where('isVerified', 0);
+    }
+
+    public function userWishlistProducts()
+    {
+        return $this->belongsToMany(Product::class,'wishlists')->withTimestamps();
+    }
 }

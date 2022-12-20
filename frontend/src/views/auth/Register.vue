@@ -1,6 +1,6 @@
 <script setup>
 import { useAuth, useNotification } from "@/stores";
-import { ref } from 'vue';
+import { ref, reactive, onMounted } from 'vue';
 import { useRouter } from 'vue-router'
 import { Field, Form } from "vee-validate";
 import * as yup from "yup";
@@ -15,7 +15,9 @@ const schema = yup.object({
   .min(8)
   .oneOf([yup.ref("password"),null],"Passwords and confirm password must match"),
 });
-
+onMounted(() => {
+  $("#login-modal").modal("hide");
+});
 const auth = useAuth();
 const notify = useNotification();
 

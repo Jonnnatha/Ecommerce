@@ -3,10 +3,12 @@
 namespace App\Http\Controllers\Api\User;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\User\WishlistResource;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class WhishlistController extends Controller
+class WishlistController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,7 +17,8 @@ class WhishlistController extends Controller
      */
     public function index()
     {
-        //
+        $wishlists = Auth::guard('user-api')->user()->userWishlistProducts()->get();
+        return WishlistResource::collection($wishlists);
     }
 
     /**
@@ -26,7 +29,19 @@ class WhishlistController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $user = Auth::guard('user-api')->user();
+
+        $count = $user->userWishlistProducts()->where('product_id', $request->product_id)->count();
+
+        if ($count == 0) {
+            //attach
+            $user->userWishlistProducts()->attach($request->product_id);
+            return send_ms('Attach Success', true, 201);
+        } else {
+            //detach
+            $user->userWishlistProducts()->detach($request->product_id);
+            return send_ms('Detach Success', false, 200);
+        }
     }
 
     /**

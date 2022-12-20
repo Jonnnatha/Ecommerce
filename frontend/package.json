@@ -11,6 +11,7 @@
   "dependencies": {
     "axios": "^0.27.2",
     "element-plus": "^2.2.26",
+    "laravel-vue-pagination": "^3.0.0",
     "nprogress": "^0.2.0",
     "pinia": "^2.0.27",
     "pinia-plugin-persistedstate": "^3.0.1",

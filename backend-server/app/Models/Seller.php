@@ -12,6 +12,12 @@ class Seller extends Authenticatable
     use HasApiTokens, HasFactory, Notifiable;
 
 
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
+
      /**
      * The attributes that are mass assignable.
      *
@@ -52,4 +58,13 @@ class Seller extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    public function scopeVerifiedSeller($query)
+    {
+        $query->where('isVerified', 1);
+    }
+
+    public function products(){
+        return $this->hasMany(Product::class);
+    }
 }

@@ -36,11 +36,13 @@ class AuthController extends Controller
 
     public function makeToken($user)
     {
+        $wishlists = $user->userWishlistProducts()->get();
         $token =  $user->createToken('user-token')->plainTextToken;
         return (new AuthResource($user))
             ->additional(['meta' => [
                 'token' => $token,
                 'token_type' => 'Bearer',
+                'wishlists' => $wishlists,
             ]]);
     }
 

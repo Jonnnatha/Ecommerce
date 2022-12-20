@@ -3,7 +3,7 @@
 
 function send_ms($msg,$status,$code){
 
-   return $res = [
+ $res = [
         'status' => $status,
         'message' => $msg,
    ];

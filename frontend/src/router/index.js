@@ -43,7 +43,7 @@ const routes = [
   meta: {title:"seller-apply"},
  },
 
-  { path: '/seller-store', 
+  { path: '/seller-store/:slug', 
   name:"seller.store" ,
   component: SellerStore,
   meta: {title:"seller-store"},
@@ -87,6 +87,9 @@ meta: {title:"wishlist", requiresAuth: true},
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes,
+  scrollBehavior(){
+    return {top:0, behavior:'smooth'}
+  },
 });
 
 const DEFAULT_TITLE = "404";

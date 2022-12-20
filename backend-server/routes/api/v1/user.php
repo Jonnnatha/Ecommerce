@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\User\AuthController;
+use App\Http\Controllers\Api\User\WishlistController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -16,4 +17,9 @@ Route::middleware('auth:user-api')->group(function () {
         Route::post('/logout', 'logout');
         Route::get('/me',  'user');
     });
+
+    Route::apiResources([
+        'wishlists' => WishlistController::class,
+    ]);
+
 });

@@ -4,3 +4,5 @@ export * from "./slider";
 export * from "./category";
 export * from "./product";
 export * from "./cart";
+export * from "./wishlist";
+export * from "./sellers";
