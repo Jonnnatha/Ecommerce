@@ -47,7 +47,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <section class="banner-part">
+    <section class="banner-part" style="text-align: center;">
       <div class="">
         <div class="row">
           <div class="col-lg-12 order-0 order-lg-1 order-xl-1">
