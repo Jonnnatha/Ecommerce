@@ -24,7 +24,7 @@ onMounted(() => {
 <template>
   <div >
     <section class="single-banner">
-      <div class="container"><h2>Seller Products</h2></div>
+      <div class="container"><h2>Produtos Vendidos</h2></div>
     </section>
     <div class="brand-single" v-if="products.data"> 
       <a href="#"
@@ -39,7 +39,7 @@ onMounted(() => {
     </div>
     <section class="inner-section shop-part">
       <div class="container">
-        <div class="row" v-if="products.data">
+        <div class="row">
           <div class="col-lg-12">
             <div class="top-filter">
               <div class="filter-show">

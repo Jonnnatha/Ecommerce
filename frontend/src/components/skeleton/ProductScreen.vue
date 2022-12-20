@@ -6,12 +6,18 @@ const props = defineProps({
         required:true,
         default:10,
     },
+
+    cols:{
+        type:Number,
+        required:true,
+        default:5,
+    }
 });
 </script>
 
 
 <template>
-   <div class="row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5">
+   <div :class="`row row-cols-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-${cols}`">
                     <div class="col cs_margin" v-for="(product,index) in dataAmount" :key="index">     
                         <div class="ssc ssc-card" style="max-width: 300px">
     <div class="ssc-wrapper">

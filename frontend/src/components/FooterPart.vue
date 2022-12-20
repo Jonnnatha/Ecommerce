@@ -21,7 +21,7 @@
         </div>
         <div class="col-sm-6 col-xl-3">
           <div class="footer-widget contact">
-            <h3 class="footer-title">contact us</h3>
+            <h3 class="footer-title">Contate-Nos</h3>
             <ul class="footer-contact">
               <li>
                 <i class="icofont-ui-email"></i>
@@ -31,31 +31,31 @@
               </li>
               <li>
                 <i class="icofont-ui-touch-phone"></i>
-                <p><span>+8801722260010</span><span>+8801xxxxxxxx</span></p>
+                <p><span>+55984596260</span><span>+55xxxxxxxx</span></p>
               </li>
               <li>
                 <i class="icofont-location-pin"></i>
-                <p>1Hd- 50, 010 Rangpur,Bangladesh</p>
+                <p>Benedito Von Rondow-Alfa Sul 202,Brasil</p>
               </li>
             </ul>
           </div>
         </div>
         <div class="col-sm-6 col-xl-3">
           <div class="footer-widget">
-            <h3 class="footer-title">quick Links</h3>
+            <h3 class="footer-title">Links Rápidos</h3>
             <div class="footer-links">
               <ul>
-                <li><a href="#">My Account</a></li>
-                <li><a href="#">Order History</a></li>
-                <li><a href="#">Order Tracking</a></li>
-                <li><a href="#">Best Seller</a></li>
-                <li><a href="#">New Arrivals</a></li>
+                <li><a href="#">Minha Conta</a></li>
+                <li><a href="#">Historico de Pedidos</a></li>
+                <li><a href="#">Rastreamento de pedidos</a></li>
+                <li><a href="#">Mais vendidos</a></li>
+                <li><a href="#">Novas chegadas</a></li>
               </ul>
               <ul>
-                <li><a href="#">Location</a></li>
-                <li><a href="#">Affiliates</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Carrer</a></li>
+                <li><a href="#">Localização</a></li>
+                <li><a href="#">Afiliados</a></li>
+                <li><a href="#">Contato</a></li>
+                <li><a href="#">Carreira</a></li>
                 <li><a href="#">Faq</a></li>
               </ul>
             </div>
@@ -80,8 +80,8 @@
         <div class="col-12">
           <div class="footer-bottom">
             <p class="footer-copytext">
-              &copy; All Copyrights Reserved by
-              <a target="_blank" href="https://w3coders.net">W3 Coders</a>
+              &copy; Todos os direitos autorais reservados por
+              <a target="_blank" href="https://w3coders.net">Jonnatha</a>
             </p>
             <div class="footer-card">
               <a href="#"><img src="@/assets/images/payment/jpg/01.jpg" alt="payment" /></a><a href="#"><img

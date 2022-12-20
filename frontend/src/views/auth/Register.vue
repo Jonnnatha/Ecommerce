@@ -57,9 +57,9 @@ const onSubmit = async (values, { setErrors }) => {
           <div class="col-12 col-sm-10 col-md-12 col-lg-12 col-xl-6">
             <div class="user-form-card">
               <div class="user-form-title">
-                <h2>Customer Register</h2>
+                <h2>Cadastro de Clientes</h2>
 
-                <p>Use your credentials to access</p>
+                <p>Use suas credenciais para acessar</p>
               </div>
               <div class="user-form-group" id="axiosForm">
                 <Form class="user-form" @submit="onSubmit" :validation-schema="schema" v-slot="{errors, isSubmitting}">
@@ -112,7 +112,7 @@ const onSubmit = async (values, { setErrors }) => {
                     </button>
 
                     <p>
-                      Forgot your password?<a href="reset-password.html" class="">reset here</a>
+                      Esqueceu sua senha?<a href="reset-password.html" class="">redefinir aqui</a>
                     </p>
                   </div>
                 </form>
@@ -120,7 +120,7 @@ const onSubmit = async (values, { setErrors }) => {
             </div>
             <div class="user-form-remind">
               <p>
-                 have any account?<router-link :to="{ name: 'user.login' }" class="">login here</router-link>
+                Tem alguma conta?<router-link :to="{ name: 'user.login' }" class="">Entre aqui</router-link>
               </p>
             </div>
             <div class="user-form-footer"></div>

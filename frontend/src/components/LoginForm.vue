@@ -47,9 +47,9 @@ if (res.data) {
         <div class="user-form-card">
               <div class="user-form-title">
 
-                <h2>Customer Login</h2>
+                <h2>Login do cliente</h2>
 
-                <p>Use your credentials to access</p>
+                <p>Use suas credenciais para acessar</p>
               </div>
               <div class="user-form-group" id="axiosForm">
                 <Form class="user-form" @submit="onSubmit" :validation-schema="schema" v-slot="{errors, isSubmitting}">
@@ -73,7 +73,7 @@ if (res.data) {
                   </div>
                   <div class="form-check mb-3">
                     <input class="form-check-input" type="checkbox" id="check" value="" /><label
-                      class="form-check-label" for="check">Remember Me</label>
+                      class="form-check-label" for="check">Lembre de mim</label>
                   </div>
                   <div class="form-button">
                     <button type="submit" :disabled="isSubmitting">login
@@ -83,7 +83,7 @@ if (res.data) {
 
                     <div class="user-form-remind">
               <p>
-                Don't have any account?<router-link :to="{ name: 'user.register' }" class="">register here</router-link>
+                Não tem nenhuma conta?<router-link :to="{ name: 'user.register' }" class="">Registre-se aqui</router-link>
               </p>
             </div>
                   </div>

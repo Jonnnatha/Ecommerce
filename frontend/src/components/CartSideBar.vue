@@ -31,7 +31,7 @@ const cartIncrement = (product)=>{
           <i class="fas fa-shopping-basket"></i><span>total item {{cartItemsCount}}</span>
         </div>
         <div class="cart-total" v-else>
-          <span>Your Cart is Empty...</span>
+          <span>Seu carrinho está vazio...</span>
         </div>
         <button class="cart-close" @click="cartClose"><i class="icofont-close"></i></button>
       </div>
@@ -76,7 +76,7 @@ const cartIncrement = (product)=>{
         <li class="cart-item margin_cs">
           <img src="@/assets/images/cart/cart.png" class="cart-image" alt=""/>
         </li>
-        <h3 class="text-center">Your Cart is Empty</h3>
+        <h3 class="text-center">Seu carrinho está vazio</h3>
       </ul>
     </transition>
       <div class="cart-footer">

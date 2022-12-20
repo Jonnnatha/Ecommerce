@@ -5,14 +5,14 @@
       <div class="row align-items-center">
         <div class="col-md-5 col-lg-6 col-xl-7">
           <div class="news-text">
-            <h2>Get 20% Discount for Subscriber</h2>
+            <h2>Ganhe 20% de desconto para assinante</h2>
             <p>Lorem ipsum dolor consectetur adipisicing accusantium</p>
           </div>
         </div>
         <div class="col-md-7 col-lg-6 col-xl-5">
           <form class="news-form">
             <input type="text" placeholder="Enter Your Email Address" /><button>
-              <span><i class="icofont-ui-email"></i>Subscribe</span>
+              <span><i class="icofont-ui-email"></i>Se inscrever</span>
             </button>
           </form>
         </div>
@@ -27,7 +27,7 @@
           <div class="intro-wrap">
             <div class="intro-icon"><i class="fas fa-truck"></i></div>
             <div class="intro-content">
-              <h5>free home delivery</h5>
+              <h5>Entrega em domicílio grátis</h5>
               <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
             </div>
           </div>
@@ -36,7 +36,7 @@
           <div class="intro-wrap">
             <div class="intro-icon"><i class="fas fa-sync-alt"></i></div>
             <div class="intro-content">
-              <h5>instant return policy</h5>
+              <h5>Política de devolução instantânea</h5>
               <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
             </div>
           </div>
@@ -45,7 +45,7 @@
           <div class="intro-wrap">
             <div class="intro-icon"><i class="fas fa-headset"></i></div>
             <div class="intro-content">
-              <h5>quick support system</h5>
+              <h5>sistema de suporte rápido</h5>
               <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
             </div>
           </div>
@@ -54,7 +54,7 @@
           <div class="intro-wrap">
             <div class="intro-icon"><i class="fas fa-lock"></i></div>
             <div class="intro-content">
-              <h5>secure payment way</h5>
+              <h5>Forma de pagamento segura</h5>
               <p>Lorem ipsum dolor sit amet adipisicing elit nobis.</p>
             </div>
           </div>

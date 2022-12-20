@@ -101,7 +101,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h3 style="float: left">SHOP BY CATEGORIES</h3>
+              <h3 style="float: left">COMPRA POR CATEGORIAS</h3>
             </div>
           </div>
         </div>
@@ -142,7 +142,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>recently sold items</h2>
+              <h2>Itens Vendidos Recentemente</h2>
             </div>
           </div>
         </div>
@@ -164,7 +164,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>show more</span></a
+                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
               >
             </div>
           </div>
@@ -177,7 +177,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Popular items</h2>
+              <h2>Itens Popular</h2>
             </div>
           </div>
         </div>
@@ -198,7 +198,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>show more</span></a
+                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
               >
             </div>
           </div>
@@ -211,7 +211,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Winter items</h2>
+              <h2>Itens de Inverno</h2>
             </div>
           </div>
         </div>
@@ -233,7 +233,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>show more</span></a
+                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
               >
             </div>
           </div>
@@ -246,7 +246,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Features items</h2>
+              <h2>Itens de Recursos</h2>
             </div>
           </div>
         </div>
@@ -267,7 +267,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>show more</span></a
+                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
               >
             </div>
           </div>
@@ -280,7 +280,7 @@ onMounted(() => {
         <div class="row">
           <div class="col">
             <div class="section-heading">
-              <h2>collected new items</h2>
+              <h2>Novos itens de coleção</h2>
             </div>
           </div>
         </div>
@@ -351,7 +351,7 @@ onMounted(() => {
           <div class="col">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>show more</span></a
+                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
               >
             </div>
           </div>

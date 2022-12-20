@@ -9,7 +9,7 @@
         <div class="container">
           <h2>Order List</h2>
           <ol class="breadcrumb">
-            <li class="breadcrumb-item"><a href="index.html">My Orders</a></li>
+            <li class="breadcrumb-item"><a href="index.html">Meus Pedidos</a></li>
           </ol>
         </div>
       </section>

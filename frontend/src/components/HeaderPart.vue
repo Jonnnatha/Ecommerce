@@ -34,7 +34,7 @@ function cartshow() {
         <div class="row">
           <div class="col-md-12 col-lg-5">
             <div class="header-top-welcome">
-              <p>Welcome to Ecomart in Your Dream Online Store!</p>
+              <p>Bem-vindo à Ecomart na loja online dos seus sonhos!</p>
             </div>
           </div>
           <div class="col-md-5 col-lg-3"></div>
@@ -42,11 +42,11 @@ function cartshow() {
             <ul class="header-top-list">
               <li>
                 <router-link :to="{ name: 'seller.apply' }" href="offer.html"
-                  >Seller Apply</router-link
+                  >Vendedor Candidate-se</router-link
                 >
               </li>
-              <li><a href="faq.html">need help</a></li>
-              <li><a href="contact.html">contact us</a></li>
+              <li><a href="faq.html">Preciso de ajuda</a></li>
+              <li><a href="contact.html">Contate-Nos</a></li>
             </ul>
           </div>
         </div>
@@ -96,7 +96,7 @@ function cartshow() {
                     :to="{ name: 'user.register' }"
                     class="dropdown-item"
                   >
-                    Register</router-link
+                    Registro</router-link
                   >
                 </li>
               </ul>
@@ -107,7 +107,7 @@ function cartshow() {
                     :to="{ name: 'user.profile' }"
                     class="dropdown-item"
                   >
-                    My Profile</router-link
+                  Meu perfil</router-link
                   >
                 </li>
 
@@ -116,7 +116,7 @@ function cartshow() {
                     :to="{ name: 'user.orders' }"
                     class="dropdown-item"
                   >
-                    My Orders</router-link
+                  Minhas ordens</router-link
                   >
                 </li>
 
@@ -125,7 +125,7 @@ function cartshow() {
                     :to="{ name: 'user.wishlist' }"
                     class="dropdown-item"
                   >
-                    My Wishlist</router-link
+                   Lista de Desejos</router-link
                   >
                 </li>
 

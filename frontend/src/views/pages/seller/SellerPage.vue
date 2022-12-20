@@ -22,7 +22,7 @@ const getSellers = async (page = 1) => {
 <template>
   <div>
     <section class="inner-section single-banner">
-      <div class="container"><h2>Seller List</h2></div>
+      <div class="container"><h2>Lista Vendidos</h2></div>
     </section>
     <section class="inner-section">
       <div class="container">
@@ -97,8 +97,8 @@ const getSellers = async (page = 1) => {
           <div class="col-lg-12">
             <div class="bottom-paginate">
               <p class="page-info">
-                Showing {{ sellers.meta.per_page }} of
-                {{ sellers.meta.total }} Results
+                Mostrando {{ sellers.meta.per_page }} de
+                {{ sellers.meta.total }} Resultados
               </p>
               <ul class="pagination">
                 <Pagination

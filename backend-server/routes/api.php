@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\Admin\DivisionController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Seller\SellerController;
+use App\Http\Controllers\Api\ShopController;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Route as RoutingRoute;
 use Illuminate\Support\Facades\Route;
@@ -28,6 +29,9 @@ Route::prefix('v1')->group(function(){
     Route::get('sliders',[SliderController::class,'index']);
     Route::get('divisions',[DivisionController::class,'index']);
     Route::get('sellers',[SellerController::class,'index']);
+
+    Route::get('shop-products',[ShopController::class,'index']);
+
     Route::get('sellers/products/{slug}',[SellerController::class,'sellerProducts']);
 });
 

@@ -28,7 +28,7 @@ function cateClose() {
     <aside class="category-sidebar">
       <div class="category-header">
         <h4 class="category-title">
-          <i class="fas fa-align-left"></i><span>categories</span>
+          <i class="fas fa-align-left"></i><span>Categorias</span>
         </h4>
         <button class="category-close" @click="cateClose"><i class="icofont-close"></i></button>
       </div>
@@ -132,7 +132,7 @@ function cateClose() {
         </li>
       </ul>
       <div class="category-footer">
-        <p>All Rights Reserved by <a href="#">W3Coders</a></p>
+        <p>Direitos Reservados <a href="#">Jonnatha</a></p>
       </div>
     </aside>
 
@@ -145,25 +145,25 @@ function cateClose() {
       <div class="nav-content">
         <ul class="nav-list">
           <li>
-            <a href="#" class="nav-link"><i class="icofont-home"></i>Home</a>
+            <a href="#" class="nav-link"><i class="icofont-home"></i>Inicio</a>
           </li>
 
           <li>
-            <a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>contact us</a>
+            <a class="nav-link" href="contact.html"><i class="icofont-contacts"></i>Contate-Nos</a>
           </li>
 
           <li>
-            <a class="nav-link" href="login.html"><i class="icofont-logout"></i>logout</a>
+            <a class="nav-link" href="login.html"><i class="icofont-logout"></i>Sair</a>
           </li>
         </ul>
         <div class="nav-info-group">
           <div class="nav-info">
             <i class="icofont-ui-touch-phone"></i>
-            <p><small>call us</small><span>(+880) 183 8288 389</span></p>
+            <p><small>Telefone</small><span>(+55) 38 9.98459-6260</span></p>
           </div>
           <div class="nav-info">
             <i class="icofont-ui-email"></i>
-            <p><small>email us</small><span>support@greeny.com</span></p>
+            <p><small>Email</small><span>support@greeny.com</span></p>
           </div>
         </div>
       </div>
@@ -171,16 +171,16 @@ function cateClose() {
     <!-- mobile footer menu  -->
     <div class="mobile-menu">
       <a href="/" class="active router-link-exact-active" title="Home Page" aria-current="page"><i
-          class="fas fa-home"></i><span>Home</span></a>
+          class="fas fa-home"></i><span>Inicio</span></a>
       <button class="cate-btn" @click="cateBtn" title="Category List">
         <i class="fas fa-list"></i><span>category</span>
       </button>
       <button class="cart-btn" @click="cartBtn" title="Cartlist">
-        <i class="fas fa-shopping-basket"></i><span>Cart</span><sup>2</sup>
+        <i class="fas fa-shopping-basket"></i><span>Cartão</span><sup>2</sup>
       </button>
       <a href="/my-wishist" class="" title="Wishlist"><i
-          class="fas fa-bell"></i><span>Notifications</span><sup>0</sup></a>
-      <a href="/user/profile" class="" title="My Account"><i class="fas fa-user"></i><span>My Account</span></a>
+          class="fas fa-bell"></i><span>Notificações</span><sup>0</sup></a>
+      <a href="/user/profile" class="" title="My Account"><i class="fas fa-user"></i><span>Minha Conta</span></a>
     </div>
   </div>
 </template>

@@ -49,10 +49,10 @@ function addToCart(product) {
   <div>
     <section class="inner-section single-banner">
       <div class="container">
-        <h2>wishlist</h2>
+        <h2>Lista de Desejos</h2>
         <ol class="breadcrumb">
           <li class="breadcrumb-item">
-            <a href="index.html">My Wishlist</a>
+            <a href="index.html">Lista de Desejos</a>
           </li>
         </ol>
       </div>
@@ -66,11 +66,11 @@ function addToCart(product) {
                 <thead>
                   <tr>
                     <th scope="col">Serial</th>
-                    <th scope="col">Product</th>
-                    <th scope="col">Name</th>
-                    <th scope="col">Price</th>
-                    <th scope="col">shopping</th>
-                    <th scope="col">action</th>
+                    <th scope="col">Produto</th>
+                    <th scope="col">Nome</th>
+                    <th scope="col">Preço</th>
+                    <th scope="col">Shopping</th>
+                    <th scope="col">Ação</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -127,7 +127,7 @@ function addToCart(product) {
         <div class="row">
           <div class="col-lg-12">
             <div class="text-center mt-5">
-              <button class="btn btn-outline">Load more items</button>
+              <button class="btn btn-outline">Carrega mais itens</button>
             </div>
           </div>
         </div>

@@ -7,11 +7,11 @@
           <div class="navbar-content">
             <ul class="navbar-list">
               <li class="navbar-item dropdown">
-                <a class="navbar-link" href="#">home</a>
+                <a class="navbar-link" href="#">Inicio</a>
               </li>
 
               <li class="navbar-item dropdown-megamenu">
-                <a class="navbar-link dropdown-arrow" href="#">Categories</a>
+                <a class="navbar-link dropdown-arrow" href="#">Categorias</a>
                 <div class="megamenu">
                   <div class="container">
                     <div class="row row-cols-5">
@@ -147,7 +147,7 @@
 
               <li class="navbar-item dropdown-megamenu">
                 <router-link  :to="{name: 'seller.page'}" class="navbar-link" 
-                >Seller List</router-link>
+                >Lista de Vendedores</router-link>
               </li>
             </ul>
           </div>
@@ -158,16 +158,3 @@
     </div>
 </template>
 
-<script>
-export default {
-    setup () {
-        
-
-        return {}
-    }
-}
-</script>
-
-<style>
-
-</style>

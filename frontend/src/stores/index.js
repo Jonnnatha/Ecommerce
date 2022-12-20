@@ -6,3 +6,4 @@ export * from "./product";
 export * from "./cart";
 export * from "./wishlist";
 export * from "./sellers";
+export * from "./shop";
