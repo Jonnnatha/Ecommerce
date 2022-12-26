@@ -1,6 +1,8 @@
 <script setup>
 import { ProductCard } from "@/components/product";
-import Pagination from "laravel-vue-pagination";
+// import Pagination from "laravel-vue-pagination";
+
+import { Bootstrap5Pagination } from "laravel-vue-pagination";
 import {ProductScreen} from "@/components/skeleton";
 import { useRoute } from "vue-router";
 import { useSeller } from "@/stores";
@@ -99,7 +101,7 @@ onMounted(() => {
                 {{ products.products.total }} Results
               </p>
               <ul class="pagination">
-                <Pagination
+                <Bootstrap5Pagination
                   :data="products.products"
                   @pagination-change-page="getSellersProduct"
                 >
@@ -113,7 +115,7 @@ onMounted(() => {
                       ><i class="fas fa-long-arrow-alt-right"></i
                     ></a>
                   </template>
-                </Pagination>
+                </Bootstrap5Pagination>
               </ul>
             </div>
           </div>

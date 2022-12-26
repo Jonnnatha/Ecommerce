@@ -1,7 +1,9 @@
 <script setup>
 import { useSeller } from "@/stores";
 import { storeToRefs } from "pinia";
-import Pagination from "laravel-vue-pagination";
+// import Pagination from "laravel-vue-pagination";
+
+import { Bootstrap5Pagination } from "laravel-vue-pagination";
 import {CategoryScreen} from "@/components/skeleton";
 import { onMounted, ref } from "vue";
 
@@ -101,7 +103,7 @@ const getSellers = async (page = 1) => {
                 {{ sellers.meta.total }} Resultados
               </p>
               <ul class="pagination">
-                <Pagination
+                <Bootstrap5Pagination
                   :data="sellers"
                   @pagination-change-page="getSellers"
                 >
@@ -115,7 +117,7 @@ const getSellers = async (page = 1) => {
                       ><i class="fas fa-long-arrow-alt-right"></i
                     ></a>
                   </template>
-                </Pagination>
+                </Bootstrap5Pagination>
               </ul>
             </div>
           </div>

@@ -31,6 +31,7 @@ Route::prefix('v1')->group(function(){
     Route::get('sellers',[SellerController::class,'index']);
 
     Route::get('shop-products',[ShopController::class,'index']);
+    Route::get('shop-sidebar',[ShopController::class,'shopSidebar']);
 
     Route::get('sellers/products/{slug}',[SellerController::class,'sellerProducts']);
 });
