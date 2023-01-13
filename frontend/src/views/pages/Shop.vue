@@ -3,9 +3,9 @@ import { ProductCard } from "@/components/product";
 // import Pagination from "laravel-vue-pagination";
 
 import { Bootstrap5Pagination } from "laravel-vue-pagination";
-import {ProductScreen} from "@/components/skeleton";
+import {ProductScreen, SidebarScreen} from "@/components/skeleton";
 import {useShop} from "@/stores";
-import { onMounted, ref } from "vue";
+import { onMounted, ref, computed  } from "vue";
 import { storeToRefs } from "pinia";
 
 const shop = useShop();
@@ -26,6 +26,27 @@ const getProducts = (page = 1) =>{
 }
 const show = ref(10);
 const sort = ref("default");
+
+
+
+///brand and category searching
+
+const searchBrandQuery = ref("");
+
+const searchedBrands =  computed(() => { 
+return shop.sidebar.data.brands.filter((brand)=>{
+  return brand.name.toLowerCase().match(searchBrandQuery.value.toLowerCase());
+});
+});
+
+
+const  searchCatQuery = ref("");
+
+const searchedCategories =  computed(() => { 
+return shop.sidebar.data.categories.filter((cat)=>{
+  return cat.name.toLowerCase().match(searchCatQuery.value.toLowerCase());
+});
+});
 </script>
 
 <template>
@@ -42,10 +63,9 @@ const sort = ref("default");
       <div class="container">
         <div class="row content-reverse">
           <div class="col-lg-3" v-if="sidebar.data">
-            <!-- <div class="shop-widget-promo">
-            <a href="#"><img src="images/promo/shop/01.jpg" alt="promo" /></a>
-          </div> -->
-            <div class="shop-widget">
+
+            <template v-if="sidebar.data">
+              <div class="shop-widget">
               <h6 class="shop-widget-title">Filter by Price</h6>
               <form>
                 <div class="shop-widget-group">
@@ -67,15 +87,20 @@ const sort = ref("default");
                   class="shop-widget-search"
                   type="text"
                   placeholder="Search..."
+                  v-model="searchBrandQuery"
                 />
                 <ul class="shop-widget-list shop-widget-scroll">
-                  <li v-for="brand in sidebar.data.brands" :key="brand.id">
+                  <li v-for="brand in searchedBrands" :key="brand.id">
                     <div class="shop-widget-content">
                       <input type="checkbox" id="brand1" /><label for="brand1"
                         >{{brand.name}}</label
                       >
                     </div>
                     <span class="shop-widget-number">{{ brand.products_count }}</span>
+                  </li>
+
+                  <li v-show="searchedBrands.length == 0">
+                    <p class="text-danger"> Search Result Not Found!</p>
                   </li>
                 </ul>
                 <button class="shop-widget-btn">
@@ -90,9 +115,10 @@ const sort = ref("default");
                   class="shop-widget-search"
                   type="text"
                   placeholder="Search..."
+                  v-model="searchCatQuery"
                 />
                 <ul class="shop-widget-list shop-widget-scroll">
-                  <li v-for="category in sidebar.data.categories" :key="category.id">
+                  <li v-for="category in searchedCategories" :key="category.id">
                     <div class="shop-widget-content">
                       <input type="checkbox" id="brand1" /><label for="brand1"
                         >{{category.name}}</label
@@ -100,12 +126,20 @@ const sort = ref("default");
                     </div>
                     <span class="shop-widget-number">{{ category.products_count }}</span>
                   </li>
+                  <li v-show="searchedCategories.length == 0">
+                    <p class="text-danger"> Search Result Not Found!</p>
+                  </li>
                 </ul>
                 <button class="shop-widget-btn">
                   <i class="far fa-trash-alt"></i><span>clear filter</span>
                 </button>
               </form>
             </div>
+            </template>
+         <template v-else>
+          <SidebarScreen/>
+         </template>
+        
           </div>
           <div class="col-lg-9">
             <div class="row">
