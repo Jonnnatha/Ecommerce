@@ -4,16 +4,27 @@ import axiosInstance from "@/services/AxiosService";
 export const useShop = defineStore("shop", {
   state: () => ({
     products: [],
-    sidebar:[],
+    sidebar: [],
   }),
 
   actions: {
-    async index(page,show,sort) {
+    async index(page, show, condition, brand, cat, price_range, search, sort) {
       try {
-        const res = await axiosInstance.get(
-          `/shop-products?page=${page}&show=${show}&sort=${sort}`
-          );
-
+        // const res = await axiosInstance.get(
+        //   `/shop-products?page=${page}&show=${show}&condition=${condition}`
+        // );
+        const res = await axiosInstance.get(`/shop-products`, {
+          params: {
+            page,
+            show,
+            condition,
+            brand: brand,
+            category: cat,
+            price_range: price_range,
+            search: search.length >= 3 ? search : "",
+            sort: sort,
+          },
+        });
         if (res.status === 200) {
           this.products = res.data;
         }

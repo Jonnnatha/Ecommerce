@@ -16,14 +16,15 @@ class Category extends Model
      */
     protected $guarded = [];
 
-    public function scopeStatus($query,$status)
+
+    public function scopeStatus($query, $status)
     {
-        $query->where('status',$status);
+        $query->where('status', $status);
     }
+
 
     public function products()
     {
-        return $this->hasMany(Product::class);
+        return $this->hasMany(Product::class)->where('status', 'active');
     }
-
 }
