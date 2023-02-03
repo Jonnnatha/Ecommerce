@@ -27,8 +27,8 @@ class ShopController extends Controller
 
             $condition = $request->condition;
             $per_page_data = $request->show;
-            $brandIds = $request->brand;
-            $catIds = $request->category;
+            $brandslugs = $request->brand;
+            $catSlug = $request->category;
             $price_range = $request->price_range;
             $search = $request->search;
             $sort = $request->sort;
@@ -37,10 +37,14 @@ class ShopController extends Controller
                 ->when($condition != 'all', function ($q) use ($condition) {
                     return $q->conditions($condition);
                 })
-                ->when($brandIds, function ($q) use ($brandIds) {
+                ->when($brandslugs, function ($q) use ($brandslugs) {
+                    $brandIds = Brand::select('id')->whereIn('slug',$brandslugs)->pluck('id')
+                    ->toArray();
                     return $q->whereIn('brand_id', $brandIds);
                 })
-                ->when($catIds, function ($q) use ($catIds) {
+                ->when($catSlug, function ($q) use ($catSlug) {
+                    $catIds = Category::select('id')->whereIn('slug',$catSlug)->pluck('id')
+                    ->toArray();
                     return $q->whereIn('category_id', $catIds);
                 })
                 ->when($price_range, function ($q) use ($price_range) {
@@ -77,8 +81,10 @@ class ShopController extends Controller
     public function shopSidebar()
     {
 
-        $categories = Category::withCount('products')->status('active')->get();
-        $brands = Brand::withCount('products')->status('active')->get();
+        $categories = product_count_upto_zero(Category::withCount('products')->status('active')->get());
+
+
+        $brands = product_count_upto_zero(Brand::withCount('products')->status('active')->get());
 
         $min_price = Product::min('price');
         $max_price = Product::max('price');

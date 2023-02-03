@@ -154,7 +154,7 @@ const sort = ref("default");
                         <input
                           type="checkbox"
                           v-model="selectedBrand"
-                          :value="brand.id"
+                          :value="brand.slug"
                           @change="getProducts"
                           :id="`brand${index}`"
                         /><label :for="`brand${index}`">{{ brand.name }}</label>
@@ -194,7 +194,7 @@ const sort = ref("default");
                         <input
                           type="checkbox"
                           v-model="selectedCategory"
-                          :value="category.id"
+                          :value="category.slug"
                           @change="getProducts"
                           :id="`cat${index}`"
                         /><label :for="`cat${index}`">{{
