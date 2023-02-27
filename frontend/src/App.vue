@@ -1,44 +1,51 @@
 <script setup>
+import { useCategory } from "@/stores";
+import { onMounted } from "vue";
 
 import {
   HeaderPart,
   NavBar,
   CartSideBar,
   MobileMenu,
-  Newsletter,
   FooterPart,
-  LoginModal
+  NewsLetter,
+  LoginModal,
 } from "@/components";
+import { storeToRefs } from "pinia";
 
+const navData = useCategory();
+const { navCats } = storeToRefs(navData);
+
+onMounted(() => {
+  navData.navCategory();
+});
 </script>
+
 <template>
   <div>
     <div class="backdrop"></div>
     <a class="backtop fas fa-arrow-up" href="#"></a>
 
-
-    <!---   HEADER -->
+    <!-- heder part  -->
     <HeaderPart />
-
-    <NavBar />
+    <!-- NavBar part  -->
+    <NavBar :navCats="navCats" />
 
     <CartSideBar />
 
     <MobileMenu />
     <LoginModal />
 
+    <!-- content change -->
+    <!-- <router-view> </router-view> -->
 
-    <!--- -->
-    <!-- <router-view></router-view> -->
     <router-view v-slot="{ Component }">
-    <transition name="fade" mode="out-in">
-      <component :is="Component" />
-    </transition>
-  </router-view>
+      <transition name="fade" mode="out-in">
+        <component :is="Component" />
+      </transition>
+    </router-view>
 
-
-    <Newsletter />
-
+    <NewsLetter />
 
     <FooterPart />
   </div>
@@ -59,5 +66,4 @@ import {
 .fade-leave-to {
   opacity: 0;
 }
-
 </style>

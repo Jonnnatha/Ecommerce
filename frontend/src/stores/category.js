@@ -5,6 +5,7 @@ export const useCategory = defineStore("category", {
   state: () => ({
     categories: {},
     loading: false,
+    navCats: [],
   }),
 
   actions: {
@@ -17,6 +18,20 @@ export const useCategory = defineStore("category", {
           return new Promise((resolve) => {
             resolve(res.data);
           });
+        }
+      } catch (error) {
+        if (error.response.data) {
+          console.log(error.response.data);
+        }
+      }
+    },
+
+    async navCategory() {
+      try {
+        const res = await axiosInstance.get("/nav-categories");
+
+        if (res.status === 200) {
+          this.navCats = res.data;
         }
       } catch (error) {
         if (error.response.data) {

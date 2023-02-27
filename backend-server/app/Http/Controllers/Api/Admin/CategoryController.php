@@ -9,6 +9,13 @@ use Illuminate\Http\Request;
 
 class CategoryController extends Controller
 {
+
+    public function navCats()
+    {
+        $cats = product_count_upto_zero(Category::withCount('products')->with(['subcategories'])->status("active")->orderBy('name', 'ASC')->get());
+        return  CategoryResource::collection($cats);
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -16,8 +23,8 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        $cats = Category::status("active")->paginate(10);
-        return CategoryResource::collection($cats);
+        $cats = Category::status("active")->orderBy('name', 'ASC')->paginate(10);
+        return  CategoryResource::collection($cats);
     }
 
     /**
