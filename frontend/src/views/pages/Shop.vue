@@ -7,12 +7,18 @@ import { ProductScreen, SidebarScreen } from "@/components/skeleton";
 import { useShop } from "@/stores";
 import { storeToRefs } from "pinia";
 import { onMounted, ref, computed, watch } from "vue";
-const shop = useShop();
+import { useRoute } from "vue-router";
 
+const route = useRoute();
+const shop = useShop();
 const { products, sidebar } = storeToRefs(shop);
+
 onMounted(() => {
+  queryProducts();
   getProducts();
   shop.sidebarData();
+
+  console.log(route.query.products);
 });
 
 const getProducts = (page = 1) => {
@@ -30,7 +36,7 @@ const getProducts = (page = 1) => {
   );
 };
 
-const show = ref(10);
+const show = ref(12);
 const condition = ref("all");
 
 //brand and category searching
@@ -84,6 +90,21 @@ watch(
 //sort by products
 
 const sort = ref("default");
+
+const queryProducts = () => {
+  selectedCategory.value = [];
+  if (route.query.products) {
+    selectedCategory.value.push(route.query.products);
+  }
+};
+
+watch(
+  () => route.query.products,
+  (newVal, oldVal) => {
+    queryProducts();
+    getProducts();
+  }
+);
 </script>
 
 <template>
@@ -236,7 +257,7 @@ const sort = ref("default");
                       v-model="show"
                       @change="getProducts"
                     >
-                      <option value="10">10</option>
+                      <option value="12">12</option>
                       <option value="20">20</option>
                       <option value="30">30</option>
                       <option value="50">50</option>
@@ -308,7 +329,7 @@ const sort = ref("default");
             </template>
 
             <template v-else>
-              <ProductScreen :dataAmount="10" :cols="4" />
+              <ProductScreen :dataAmount="12" :cols="4" />
             </template>
             <div class="row" v-if="products.data">
               <div class="col-lg-12">

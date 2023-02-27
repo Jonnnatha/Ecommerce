@@ -7,6 +7,7 @@ use App\Http\Resources\Admin\ProductResource;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redis;
 
@@ -38,14 +39,18 @@ class ShopController extends Controller
                     return $q->conditions($condition);
                 })
                 ->when($brandslugs, function ($q) use ($brandslugs) {
-                    $brandIds = Brand::select('id')->whereIn('slug',$brandslugs)->pluck('id')
-                    ->toArray();
+                    $brandIds = Brand::select('id')->whereIn('slug', $brandslugs)->pluck('id')->toArray();
                     return $q->whereIn('brand_id', $brandIds);
                 })
                 ->when($catSlug, function ($q) use ($catSlug) {
-                    $catIds = Category::select('id')->whereIn('slug',$catSlug)->pluck('id')
-                    ->toArray();
-                    return $q->whereIn('category_id', $catIds);
+                    $catIds = Category::select('id')->whereIn('slug', $catSlug)->pluck('id')->toArray();
+
+                    if (count($catIds) > 0) {
+                        return $q->whereIn('category_id', $catIds);
+                    } else {
+                        $subCatIds = SubCategory::select('id')->whereIn('slug', $catSlug)->pluck('id')->toArray();
+                        return $q->whereIn('sub_category_id', $subCatIds);
+                    }
                 })
                 ->when($price_range, function ($q) use ($price_range) {
                     $min_price = $price_range[0];
@@ -82,8 +87,6 @@ class ShopController extends Controller
     {
 
         $categories = product_count_upto_zero(Category::withCount('products')->status('active')->get());
-
-
         $brands = product_count_upto_zero(Brand::withCount('products')->status('active')->get());
 
         $min_price = Product::min('price');
