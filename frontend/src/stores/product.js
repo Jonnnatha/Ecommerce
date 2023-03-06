@@ -10,6 +10,7 @@ export const useProduct = defineStore("product", {
     winter: [],
     features: [],
     loading: false,
+    product: {},
   }),
 
   actions: {
@@ -35,6 +36,20 @@ export const useProduct = defineStore("product", {
           return new Promise((resolve) => {
             resolve(res.data);
           });
+        }
+      } catch (error) {
+        if (error.response.data) {
+          console.log(error.response.data);
+        }
+      }
+    },
+
+    async productBySlug(slug) {
+      try {
+        const res = await axiosInstance.get(`/single-product/${slug}`);
+
+        if (res.status === 200) {
+          this.product = res.data.data;
         }
       } catch (error) {
         if (error.response.data) {

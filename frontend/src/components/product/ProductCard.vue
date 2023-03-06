@@ -77,15 +77,18 @@ const addToWishlist = async (product) => {
           <i class="fas fa-heart" v-else></i>
         </button>
 
-        <router-link :to="{ name: 'product.details' }" class="product-image"
+        <router-link
+          :to="{ name: 'product.details', params: { slug: product.slug } }"
+          class="product-image"
           ><img :src="$filters.makeImagePath(product.thumbnail)" alt="product"
         /></router-link>
       </div>
       <div class="product-content">
         <h6 class="product-name">
-          <router-link :to="{ name: 'product.details' }">{{
-            product.name
-          }}</router-link>
+          <router-link
+            :to="{ name: 'product.details', params: { slug: product.slug } }"
+            >{{ product.name }}</router-link
+          >
         </h6>
 
         <product-price :price="product.price" :discount="product.discount" />

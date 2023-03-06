@@ -23,13 +23,14 @@ return new class extends Migration
             $table->string('slug')->unique();
             $table->string('thumbnail');
             $table->string('images');
-            $table->float('price',8,2)->default(0);
+            $table->float('price', 8, 2)->default(0);
             $table->integer('discount')->default(0);
+            $table->text('descp')->nullable();
             $table->integer('stock')->default(0);
             $table->boolean('sale')->default(false);
-            $table->enum('conditions',['new','popular','feature','winter'])->default('new');
-            $table->enum('added_by',['admin','seller'])->default('admin');
-            $table->enum('status',['active','inactive'])->default('inactive');
+            $table->enum('conditions', ['new', 'popular', 'feature', 'winter'])->default('new');
+            $table->enum('added_by', ['admin', 'seller'])->default('admin');
+            $table->enum('status', ['active', 'inactive'])->default('inactive');
             $table->timestamps();
         });
     }

@@ -9,6 +9,12 @@ class Product extends Model
 {
     use HasFactory;
 
+
+    public function getRouteKeyName()
+    {
+        return 'slug';
+    }
+
     /**
      * The attributes that aren't mass assignable.
      *

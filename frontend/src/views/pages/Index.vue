@@ -1,4 +1,5 @@
 <script setup>
+
 import { useSlider, useCategory, useProduct } from "@/stores";
 import { ProductCard, ProductPrice } from "@/components/product";
 import {
@@ -47,7 +48,7 @@ onMounted(() => {
 
 <template>
   <div>
-    <section class="banner-part" style="text-align: center;">
+    <section class="banner-part">
       <div class="">
         <div class="row">
           <div class="col-lg-12 order-0 order-lg-1 order-xl-1">
@@ -101,7 +102,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h3 style="float: left">COMPRA POR CATEGORIAS</h3>
+              <h3 style="float: left">SHOP BY CATEGORIES</h3>
             </div>
           </div>
         </div>
@@ -142,7 +143,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Itens Vendidos Recentemente</h2>
+              <h2>recently sold items</h2>
             </div>
           </div>
         </div>
@@ -164,7 +165,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
+                ><i class="fas fa-eye"></i><span>show more</span></a
               >
             </div>
           </div>
@@ -177,7 +178,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Itens Popular</h2>
+              <h2>Popular items</h2>
             </div>
           </div>
         </div>
@@ -198,7 +199,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
+                ><i class="fas fa-eye"></i><span>show more</span></a
               >
             </div>
           </div>
@@ -211,7 +212,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Itens de Inverno</h2>
+              <h2>Winter items</h2>
             </div>
           </div>
         </div>
@@ -233,7 +234,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
+                ><i class="fas fa-eye"></i><span>show more</span></a
               >
             </div>
           </div>
@@ -246,7 +247,7 @@ onMounted(() => {
         <div class="row">
           <div class="col-lg-12">
             <div class="section-heading">
-              <h2>Itens de Recursos</h2>
+              <h2>Features items</h2>
             </div>
           </div>
         </div>
@@ -267,7 +268,7 @@ onMounted(() => {
           <div class="col-lg-12">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
+                ><i class="fas fa-eye"></i><span>show more</span></a
               >
             </div>
           </div>
@@ -280,7 +281,7 @@ onMounted(() => {
         <div class="row">
           <div class="col">
             <div class="section-heading">
-              <h2>Novos itens de coleção</h2>
+              <h2>collected new items</h2>
             </div>
           </div>
         </div>
@@ -317,7 +318,10 @@ onMounted(() => {
                         <button class="product-wish wish">
                           <i class="fas fa-heart"></i></button
                         ><router-link
-                          :to="{ name: 'product.details' }"
+                          :to="{
+                            name: 'product.details',
+                            params: { slug: product.slug },
+                          }"
                           class="product-image"
                           ><img
                             :src="$filters.makeImagePath(product.thumbnail)"
@@ -326,9 +330,13 @@ onMounted(() => {
                       </div>
                       <div class="product-content">
                         <h6 class="product-name">
-                          <router-link :to="{ name: 'product.details' }">{{
-                            product.name
-                          }}</router-link>
+                          <router-link
+                            :to="{
+                              name: 'product.details',
+                              params: { slug: product.slug },
+                            }"
+                            >{{ product.name }}</router-link
+                          >
                         </h6>
 
                         <product-price
@@ -351,7 +359,7 @@ onMounted(() => {
           <div class="col">
             <div class="section-btn-25">
               <a href="shop-4column.html" class="btn btn-outline"
-                ><i class="fas fa-eye"></i><span>Mostra Mais</span></a
+                ><i class="fas fa-eye"></i><span>show more</span></a
               >
             </div>
           </div>
