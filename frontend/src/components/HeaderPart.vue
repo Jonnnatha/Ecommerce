@@ -4,7 +4,8 @@ import { storeToRefs } from "pinia";
 import { useRouter } from "vue-router";
 const auth = useAuth();
 const { user, loading } = storeToRefs(auth);
-const { cartItemsCount, totalPrice } = storeToRefs(useCart());
+const cart = useCart();
+const { cartItemsCount, totalPrice } = storeToRefs(cart);
 const router = useRouter();
 const notify = useNotification();
 const userLogout = async () => {
@@ -24,7 +25,7 @@ function menu() {
 }
 
 function cartshow() {
-  $("body").css("overflow", "hidden"), $(".cart-sidebar").addClass("active");
+  cart.toggleCartSidebar();
 }
 </script>
 <template>
@@ -34,7 +35,7 @@ function cartshow() {
         <div class="row">
           <div class="col-md-12 col-lg-5">
             <div class="header-top-welcome">
-              <p>Bem-vindo à Ecomart na loja online dos seus sonhos!</p>
+              <p>Welcome to Ecomart in Your Dream Online Store!</p>
             </div>
           </div>
           <div class="col-md-5 col-lg-3"></div>
@@ -42,11 +43,11 @@ function cartshow() {
             <ul class="header-top-list">
               <li>
                 <router-link :to="{ name: 'seller.apply' }" href="offer.html"
-                  >Vendedor Candidate-se</router-link
+                  >Seller Apply</router-link
                 >
               </li>
-              <li><a href="faq.html">Preciso de ajuda</a></li>
-              <li><a href="contact.html">Contate-Nos</a></li>
+              <li><a href="faq.html">need help</a></li>
+              <li><a href="contact.html">contact us</a></li>
             </ul>
           </div>
         </div>
@@ -96,7 +97,7 @@ function cartshow() {
                     :to="{ name: 'user.register' }"
                     class="dropdown-item"
                   >
-                    Registro</router-link
+                    Register</router-link
                   >
                 </li>
               </ul>
@@ -107,7 +108,7 @@ function cartshow() {
                     :to="{ name: 'user.profile' }"
                     class="dropdown-item"
                   >
-                  Meu perfil</router-link
+                    My Profile</router-link
                   >
                 </li>
 
@@ -116,7 +117,7 @@ function cartshow() {
                     :to="{ name: 'user.orders' }"
                     class="dropdown-item"
                   >
-                  Minhas ordens</router-link
+                    My Orders</router-link
                   >
                 </li>
 
@@ -125,7 +126,7 @@ function cartshow() {
                     :to="{ name: 'user.wishlist' }"
                     class="dropdown-item"
                   >
-                   Lista de Desejos</router-link
+                    My Wishlist</router-link
                   >
                 </li>
 

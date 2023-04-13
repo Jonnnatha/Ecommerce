@@ -6,6 +6,7 @@ export {default as LoginForm} from "./LoginForm.vue";
 export {default as MobileMenu} from "./MobileMenu.vue";
 export {default as NavBar} from "./NavBar.vue";
 export {default as NewsLetter} from "./NewsLetter.vue";
+export { default as Modal } from "./Modal.vue";
 
 
 

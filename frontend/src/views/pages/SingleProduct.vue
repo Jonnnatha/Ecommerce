@@ -1,12 +1,24 @@
 <script setup>
 import { ref, onMounted } from "vue";
 import { useRoute } from "vue-router";
-import { useProduct } from "@/stores";
+import {
+  useProduct,
+  useCart,
+  useNotification,
+  useAuth,
+  useWishlist,
+  useModal,
+} from "@/stores";
 import { storeToRefs } from "pinia";
 
 import { ProductPrice } from "@/components/product";
 const route = useRoute();
 const p = useProduct();
+const cart = useCart();
+const notify = useNotification();
+const auth = useAuth();
+const wishlist = useWishlist();
+const modal = useModal();
 
 const { product } = storeToRefs(p);
 
@@ -45,6 +57,29 @@ const activeImg = ref(null);
 const currentImageChange = (img, index) => {
   thumbnailImage.value = img;
   activeImg.value = index;
+};
+
+//addto cart
+
+function addToCart(product) {
+  cart.addToCart(product);
+  notify.Success(`${product.name} Added Your Cart`);
+}
+
+//wishlist code
+const addToWishlist = async (product) => {
+  if (auth.user.data) {
+    // alert("login Ache");
+    let res = await wishlist.addToWishlist(product);
+    // console.log(res.status);
+    if (res.status === 201) {
+      notify.Success(`${product.name} Added Your Wishlist`);
+    } else {
+      notify.Success(`${product.name} Remove From Your Wishlist`);
+    }
+  } else {
+    modal.toggleModal();
+  }
 };
 </script>
 
@@ -172,7 +207,11 @@ const currentImageChange = (img, index) => {
                 </ul>
               </div>
               <div class="details-add-group">
-                <button class="product-add" title="Add to Cart">
+                <button
+                  class="product-add"
+                  title="Add to Cart"
+                  @click.prevent="addToCart(product)"
+                >
                   <i class="fas fa-shopping-basket"></i><span>add to cart</span>
                 </button>
                 <div class="product-action">
@@ -195,7 +234,11 @@ const currentImageChange = (img, index) => {
                   href="compare.html"
                   title="Compare This Item"
                   ><i class="fas fa-random"></i><span>Buy Now</span></a
-                ><a class="details-wish wish" href="#" title="Add Your Wishlist"
+                ><a
+                  class="details-wish wish"
+                  href="#"
+                  title="Add Your Wishlist"
+                  @click.prevent="addToWishlist(product)"
                   ><i class="icofont-heart"></i><span>add to wish</span></a
                 >
               </div>

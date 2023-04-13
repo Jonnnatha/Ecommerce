@@ -7,3 +7,4 @@ export * from "./cart";
 export * from "./wishlist";
 export * from "./sellers";
 export * from "./shop";
+export * from "./modal";

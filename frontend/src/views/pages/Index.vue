@@ -1,5 +1,4 @@
 <script setup>
-
 import { useSlider, useCategory, useProduct } from "@/stores";
 import { ProductCard, ProductPrice } from "@/components/product";
 import {
@@ -117,12 +116,18 @@ onMounted(() => {
               <div class="product-card">
                 <ul>
                   <li>
-                    <a class="suggest-card" href="shop-4column.html">
+                    <RouterLink
+                      :to="{
+                        name: 'shop.page',
+                        query: { products: category.slug },
+                      }"
+                      class="suggest-card"
+                    >
                       <img
                         :src="$filters.makeImagePath(category.image)"
                         alt=""
                       />
-                    </a>
+                    </RouterLink>
                   </li>
                 </ul>
 

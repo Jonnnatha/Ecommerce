@@ -1,12 +1,18 @@
 <script setup>
-import { useCart, useNotification, useAuth, useWishlist } from "@/stores";
-import { ref } from "@vue/reactivity";
+import {
+  useCart,
+  useNotification,
+  useAuth,
+  useWishlist,
+  useModal,
+} from "@/stores";
 import ProductPrice from "./ProductPrice.vue";
 
 const cart = useCart();
 const auth = useAuth();
 const wishlist = useWishlist();
 const notify = useNotification();
+const modal = useModal();
 
 const props = defineProps({
   product: {
@@ -15,25 +21,8 @@ const props = defineProps({
   },
 });
 
-const price = ref();
-
 function addToCart(product) {
-  if (product.discount) {
-    var firstprice = product.price;
-    var discount = product.discount / 100;
-    var totalPrice = firstprice - firstprice * discount;
-    price.value = totalPrice.toFixed();
-  } else {
-    price.value = product.price;
-  }
-
-  cart.addToCart({
-    id: product.id,
-    name: product.name,
-    price: price.value,
-    thumbnail: product.thumbnail,
-  });
-
+  cart.addToCart(product);
   notify.Success(`${product.name} Added Your Cart`);
 }
 
@@ -50,7 +39,7 @@ const addToWishlist = async (product) => {
       notify.Success(`${product.name} Remove From Your Wishlist`);
     }
   } else {
-    $("#login-modal").modal("show");
+    modal.toggleModal();
   }
 };
 </script>
