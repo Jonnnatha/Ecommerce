@@ -57,4 +57,15 @@ class AuthController extends Controller
     {
         return AuthResource::make($request->user());
     }
+
+    public function addressStore(Request $request)
+    {
+        $request->user()->update([
+            'division_id' => $request->division_id,
+            'district_id' => $request->district_id,
+            'address' => $request->address,
+        ]);
+
+        return send_ms('Address Saved', true, 201);
+    }
 }

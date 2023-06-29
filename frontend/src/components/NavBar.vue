@@ -1,11 +1,14 @@
 <script setup>
 import { RouterLink } from "vue-router";
+import { useCategory } from "@/stores";
+import { onMounted } from "vue";
+import { storeToRefs } from "pinia";
 
-const props = defineProps({
-  navCats: {
-    type: Object,
-    required: true,
-  },
+const navData = useCategory();
+const { navCats } = storeToRefs(navData);
+
+onMounted(() => {
+  navData.navCategory();
 });
 </script>
 
@@ -28,7 +31,7 @@ const props = defineProps({
                       <div class="row row-cols-5">
                         <div
                           class="col"
-                          v-for="(cat, index) in navCats.data"
+                          v-for="(cat, index) in navCats?.data"
                           :key="index"
                         >
                           <div class="megamenu-wrap">

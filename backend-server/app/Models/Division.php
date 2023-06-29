@@ -15,4 +15,9 @@ class Division extends Model
      * @var array
      */
     protected $guarded = [];
+
+    public function districts()
+    {
+        return $this->hasMany(District::class);
+    }
 }

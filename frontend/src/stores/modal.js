@@ -12,6 +12,9 @@ export const useModal = defineStore("modal", {
       this.isOpen = !this.isOpen;
     },
 
+    openModal() {
+      this.isOpen = true;
+    },
     closeModal() {
       this.isOpen = false;
     },

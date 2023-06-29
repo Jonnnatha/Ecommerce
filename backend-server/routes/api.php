@@ -31,7 +31,8 @@ Route::prefix('v1')->group(function () {
 
     Route::get('/single-product/{slug}', [ProductController::class, 'productBySlug']);
     Route::get('sliders', [SliderController::class, 'index']);
-    Route::get('divisions', [DivisionController::class, 'index']);
+
+
     Route::get('sellers', [SellerController::class, 'index']);
 
     Route::get('shop-products', [ShopController::class, 'index']);

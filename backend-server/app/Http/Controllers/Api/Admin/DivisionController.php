@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\DistrictResource;
 use App\Http\Resources\Admin\DivisionResource;
 use App\Models\Division;
 use Illuminate\Http\Request;
@@ -14,10 +15,17 @@ class DivisionController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+     public function districtById(Division $division)
+    {
+
+        return DistrictResource::collection($division->districts()->get(['bn_name', 'name', 'id']));
+    }
+
     public function index()
     {
-        $divisions = Division::paginate(10);
-        return DivisionResource::collection($divisions);
+        $divisions = Division::get();
+        return DistrictResource::collection($divisions);
     }
 
     /**
