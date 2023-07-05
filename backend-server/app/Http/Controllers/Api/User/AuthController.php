@@ -6,8 +6,10 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\LoginRequest;
 use App\Http\Requests\User\RegisterRequest;
 use App\Http\Resources\User\AuthResource;
+use App\Http\Resources\User\WishlistResource;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\ValidationException;
 
@@ -67,5 +69,17 @@ class AuthController extends Controller
         ]);
 
         return send_ms('Address Saved', true, 201);
+    }
+
+    public function address(Request $request){
+        $id = Auth::guard('user-id')->id();
+        $data = User::where('id',$id)->select('division_id','district_id','address')->with
+        (['division'=>function($query){
+            $query->select('id','name','charge');
+        },'district'=>function($query){
+            $query->select('id','name');
+        }])->first();
+
+        return WishlistResource::make($data);
     }
 }

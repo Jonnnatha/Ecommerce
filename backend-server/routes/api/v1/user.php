@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\Admin\CouponController;
 use App\Http\Controllers\Api\Admin\DivisionController;
 use App\Http\Controllers\Api\User\AuthController;
 use App\Http\Controllers\Api\User\WishlistController;
@@ -17,7 +18,10 @@ Route::middleware('auth:user-api')->group(function () {
         Route::post('/logout', 'logout');
         Route::get('/me',  'user');
 
+        Route::post('/address','address');
         Route::post('/address/store','addressStore');
+
+
     });
 
     Route::controller(DivisionController::class)->group(function(){
@@ -30,5 +34,7 @@ Route::middleware('auth:user-api')->group(function () {
     Route::apiResources([
         'wishlists' => WishlistController::class,
     ]);
+
+    Route::post('/apply-coupon',[CouponController::class,'apply']);
 
 });

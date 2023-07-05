@@ -1,7 +1,22 @@
 <script setup>
+import { useCart,useAddress,useCoupon } from "@/stores";
+import{useStatus} from "@/composables/status.js"
+import { storeToRefs } from "pinia";
+const { cartItems, totalPrice } = storeToRefs(useCart());
+const { address } = storeToRefs(useAddress());
+
+const status = useStatus();
+const coupon = useCoupon();
+const {couponBtnClass, couponFormClass} = storeToRefs(status);
+
 import  DeliveryAddress  from "@/components/DeliveryAddress.vue";
-const couponBtn = () => {
-  $(".coupon-btn").hide(), $(".coupon-form").css("display", "flex");
+// const couponBtn = () => {
+//   $(".coupon-btn").hide(), $(".coupon-form").css("display", "flex");
+// };
+
+const couponCode = ref("");
+const applyCoupon=() =>{
+  coupon.apply(couponCode.value);
 };
 </script>
 
@@ -45,54 +60,31 @@ const couponBtn = () => {
                       </tr>
                     </thead>
                     <tbody>
-                      <tr>
-                        <td class="table-image">
-                          <div>
-                            <img
-                              src="http://127.0.0.1:8000/uploads/products/070120220216252JsAfaISYOqXxJ1L_450_450.jpg"
-                              alt="product"
-                            />
-                          </div>
-                        </td>
-                        <td class="table-name"><h6>Iphone 12Pro Max</h6></td>
-                        <td class="table-price"><h6>৳96,000</h6></td>
-                        <td class="table-quantity"><h6>2</h6></td>
+                      <tr v-for="(cart,index) in cartItems" :key="index">
                       </tr>
                       <tr>
                         <td class="table-image">
                           <div>
                             <img
-                              src="http://127.0.0.1:8000/uploads/seller/products/07012022004201xi5Arc2MTA5gae3O_450_450.jpg"
+                              :src="$filters.makeImagePath(cart.thumbnail)"
                               alt="product"
                             />
                           </div>
                         </td>
-                        <td class="table-name"><h6>Gaming Keyboard</h6></td>
-                        <td class="table-price"><h6>৳1350</h6></td>
-                        <td class="table-quantity"><h6>1</h6></td>
-                      </tr>
-                      <tr>
-                        <td class="table-image">
-                          <div>
-                            <img
-                              src="http://127.0.0.1:8000/uploads/products/062020221217066NMbHwDRZogbMpJf_450_450.png"
-                              alt="product"
-                            />
-                          </div>
-                        </td>
-                        <td class="table-name"><h6>Men Watch</h6></td>
-                        <td class="table-price"><h6>৳595</h6></td>
-                        <td class="table-quantity"><h6>1</h6></td>
+                        <td class="table-name"><h6>{{cart.name}}</h6></td>
+                        <td class="table-price"><h6>{{$filters.currencySymbol(cart.price)}}</h6></td>
+                        <td class="table-quantity"><h6>{{cart.quantity}}</h6></td>
                       </tr>
                     </tbody>
                   </table>
                 </div>
                 <div class="chekout-coupon">
-                  <button class="coupon-btn" @click="couponBtn">
+                  <button class="coupon-btn " :class="couponBtnClass" @click="status.toggleBtn">
                     Do you have a coupon code?
                   </button>
-                  <form class="coupon-form">
+                  <form class="coupon-form"  :class="couponFormClass" @submit.prevent="applyCoupon">
                     <input
+                    v-model="couponCode"
                       type="text"
                       placeholder="Enter your coupon code"
                     /><button type="submit"><span>apply</span></button>
@@ -100,12 +92,12 @@ const couponBtn = () => {
                 </div>
                 <div class="checkout-charge">
                   <ul>
-                    <li><span>Sub total</span><span>৳193,945.00</span></li>
-                    <li><span>discount</span><span>৳0</span></li>
-                    <li><span>delivery charge</span><span>৳60</span></li>
+                    <li><span>Sub total</span><span>{{$filters.currencySymbol(totalPrice)}}</span></li>
+                    <li><span>discount</span><span>{{$filters.currencySymbol(coupon.discount)}}</span></li>
+                    <li v-if="address.division"><span>delivery charge</span><span>{{$filters.currencySymbol(address?.division?.charge)}}</span></li>
                     <li>
                       <span>Total<small>(Incl. VAT)</small></span
-                      ><span>৳194,005.00</span>
+                      ><span>{{$filters.currencySymbol(coupon.grandTotal)}}</span>
                     </li>
                   </ul>
                 </div>
@@ -123,4 +115,11 @@ const couponBtn = () => {
 
 <style>
 @import "@/assets/css/checkout.css";
+
+.coupon_btn_none{
+  display: none;
+}
+.coupon_form_display{
+  display: flex;
+}
 </style>

@@ -3,11 +3,24 @@
 namespace App\Http\Controllers\Api\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Resources\Admin\CouponResource;
 use App\Models\Coupon;
 use Illuminate\Http\Request;
 
 class CouponController extends Controller
 {
+
+    public function apply(Request $request){
+
+        $coupon = Coupon::where('code',$request->code)->where('status','active')->select('code','value','type')->first();
+
+        if($coupon){
+            return CouponResource::make($coupon);
+        }else{
+            return send_ms('invalid coupon code',false,404);
+        }
+
+    }
     /**
      * Display a listing of the resource.
      *

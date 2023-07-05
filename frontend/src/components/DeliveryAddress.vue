@@ -58,7 +58,9 @@
                 <div class="profile-card address active">
                   <!-- <h6>Home</h6> -->
                   <p>
-                    <span>Dhaka</span>, <span>Gazipur</span>, Gazipur ChowRasta.
+                    <span>{{address?.address?.division?.name}}</span>,
+                     <span>{{address?.address?.district?.name}}</span>,
+                      {{address?.address?.address}}
                   </p>
                 </div>
               </div>
@@ -78,6 +80,7 @@
   
   onMounted(() => {
     address.getDivisions();
+    address.getUserAddress();
   });
   
  
@@ -96,6 +99,7 @@
     res = address.StoreAddress(form);
 
     if (res.status) {
+      address.getUserAddress();
       form.division_id = "";
       form.disctrict_id= "";
       form.address = "";
