@@ -1,5 +1,5 @@
 <script setup>
-import { useCart,useAddress,useCoupon } from "@/stores";
+import { useCart,useAddress,useCoupon, useOrder } from "@/stores";
 import{useStatus} from "@/composables/status.js"
 import { storeToRefs } from "pinia";
 const { cartItems, totalPrice } = storeToRefs(useCart());
@@ -7,6 +7,7 @@ const { address } = storeToRefs(useAddress());
 
 const status = useStatus();
 const coupon = useCoupon();
+const order = useOrder();
 const {couponBtnClass, couponFormClass} = storeToRefs(status);
 
 import  DeliveryAddress  from "@/components/DeliveryAddress.vue";
@@ -18,6 +19,10 @@ const couponCode = ref("");
 const applyCoupon=() =>{
   coupon.apply(couponCode.value);
 };
+
+const placeOrder = () => {
+  order.place();
+}
 </script>
 
 <template>
@@ -105,7 +110,7 @@ const applyCoupon=() =>{
             </div>
           </div>
           <div class="checkout-proced">
-            <button class="btn btn-inline"><span></span> Place Order</button>
+            <button class="btn btn-inline" @click.prevent="placeOrder"><span></span> Place Order</button>
           </div>
         </div>
       </div>

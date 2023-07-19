@@ -2,12 +2,13 @@
 
 use App\Http\Controllers\Api\Admin\BrandController;
 use App\Http\Controllers\Api\Admin\CategoryController;
-use App\Http\Controllers\Api\Admin\DivisionController;
+
+use App\Http\Controllers\Api\Admin\OrderController;
 use App\Http\Controllers\Api\Admin\ProductController;
 use App\Http\Controllers\Api\Admin\SliderController;
 use App\Http\Controllers\Api\Seller\SellerController;
 use App\Http\Controllers\Api\ShopController;
-use Illuminate\Http\Request;
+
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -38,4 +39,6 @@ Route::prefix('v1')->group(function () {
     Route::get('shop-products', [ShopController::class, 'index']);
     Route::get('shop-sidebar', [ShopController::class, 'shopSidebar']);
     Route::get('sellers/products/{slug}', [SellerController::class, 'sellerProducts']);
+
+    Route::post('/order-place', [OrderController::class, 'store']);
 });

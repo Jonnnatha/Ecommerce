@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('order_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('qty')->default(0);
+            $table->float('price',8,2)->default(0);
             $table->timestamps();
         });
     }
