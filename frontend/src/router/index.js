@@ -4,7 +4,7 @@ import { useAuth } from "@/stores";
 import { Index, Shop, SingleProduct, Checkout } from "@/views/pages";
 import { UserLogin, UserRegister } from "@/views/auth";
 import { SellerApply, SellerPage, SellerStore } from "@/views/pages/seller";
-import { MyProfile, MyOrderList, MyWishlist } from "@/views/user";
+import { MyProfile, MyOrderList, MyWishlist, OrderDeatils } from "@/views/user";
 
 const routes = [
   {
@@ -82,6 +82,13 @@ const routes = [
     name: "user.orders",
     component: MyOrderList,
     meta: { title: "orders", requiresAuth: true },
+  },
+
+  {
+    path: "/order/:id",
+    name: "order.details",
+    component: OrderDeatils,
+    meta: { title: "order-details", requiresAuth: true },
   },
 
   {
